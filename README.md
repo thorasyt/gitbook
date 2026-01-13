@@ -1,7 +1,14 @@
 # My FiveM Script
 
-Documentation for my FiveM resource.
+High-performance FiveM resource with ESX & QBCore support.
 
 ## Features
 - Optimized
-- ESX/QBCore support
+- ESX / QBCore compatible
+- Ox Inventory support
+
+## Preview
+(Images / GIFs)
+
+## Support
+Discord: https://discord.gg/xxxx
