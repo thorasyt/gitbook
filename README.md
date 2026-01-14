@@ -5,5 +5,7 @@ Our FiveM Store provides high-quality, optimized scripts and UI systems designed
 ## Preview
 ![Legion Square Preview](img/legion.png)
 
+## Store 
+Tebex : https://tg11.tebex.io/
 ## Support
-Discord: https://discord.gg/xxxx
+Discord: https://discord.gg/cm7W9JYyaV
