@@ -14,8 +14,8 @@ To start the script, open the **txAdmin CFG Editor** and add the resources in th
 
 ```cfg
 start ox_lib
-start framework
-start appearance
+start framework #[es_extended, qb-core, qbx-core]
+start appearance #[skin]
 start tg-multicharacter
 ```
 
