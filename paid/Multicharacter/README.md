@@ -4,5 +4,5 @@ TG-MultiCharacter is one of our most advanced script which support multiple Fram
 
 ## Preview
 
-![MultiCharacter Image](../img/multichar.png)
+![MultiCharacter Image](../../img/multichar.png)
 

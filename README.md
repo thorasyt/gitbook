@@ -8,6 +8,6 @@ Our FiveM Store provides high-quality, optimized scripts and UI systems designed
 ![Legion Square Preview](img/legion.png)
 
 ## Store 
-Tebex : https://tg11.tebex.io/
+Tebex :```link https://tg11.tebex.io/```
 ## Support
-Discord: https://discord.gg/cm7W9JYyaV
+Discord: ```link https://discord.gg/cm7W9JYyaV```
