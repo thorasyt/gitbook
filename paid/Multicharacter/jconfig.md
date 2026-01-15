@@ -6,11 +6,15 @@ Framework of the server will be automatically fetch
 
 ## Defualt Slot
 You can add slots according to your needs and set as many slots as you want. However, the total number of usable slots is not unlimited, as it depends on your Tebex package slots and the slot limits managed through Discord.
-```lua Config.defualtSlot = 2```
+```lua 
+Config.defualtSlot = 2
+```
 
 ## choosedLocation
 This option allows you to select the active location from multiple predefined locations. All location data is configured in Config.Locations, where you can add, modify, or remove locations as needed.
-```lua Config.choosedLocation = "golf"```
+```lua 
+Config.choosedLocation = "golf"
+```
 
 ## SpawnSelector
 
@@ -18,7 +22,9 @@ You can enable or disable the Spawn Selector depending on your framework.
 This system supports ESX, QBX, and QBCore.
 
 Set the spawn selector location:
-```lua Config.SpawnSelector = "golf"```
+```lua 
+Config.SpawnSelector = false
+```
 ### ESX / QBX
 
 For ESX and QBX, trigger the spawn selector in:
@@ -113,3 +119,25 @@ Config.Clothing = 'illenium'
 - Changing this value does not require code edits
 - Incorrect values may cause clothing menus not to open
 
+## autoDataBase
+
+This option automatically manages required database changes for the script.
+When enabled, the script will check and create missing columns or tables
+without manual SQL execution.
+
+### Configuration
+```lua
+Config.autoDataBase = true
+```
+
+##### Behavior
+
+- Automatically checks required database structure on resource start
+- Creates missing columns or tables if they do not exist
+- Prevents startup errors caused by missing database fields
+
+#### Notes
+
+- Recommended to keep this enabled
+- Requires MySQL/OxMySQL to be running
+- Disable only if you prefer manual database management
