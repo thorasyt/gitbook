@@ -237,3 +237,141 @@ Config.QbApartments = true
 - ESX does not support this option
 - If disabled, the script falls back to the standard spawn system
 - Restart the resource after changing this value
+
+## StarterItems
+
+This option defines the items that a new character
+will receive when they are created for the first time.
+### Configuration
+```lua
+Config.StarterItems = {
+    'water_bottle',
+    'coffee'
+}
+```
+##### Behavior
+
+- Items are granted only when a character is created
+- Does not apply to existing characters
+- Items are added directly to the player inventory
+#### Notes
+
+- Item names must match your inventory system
+- Works with supported inventories (e.g. OX Inventory, QB Inventory)
+- Restart the resource after modifying the item list
+
+## defaultData
+
+This option defines the default UI layout and color
+settings used by the multicharacter interface.
+### Configuration
+```lua
+Config.defaultData = {
+    position = 'vertical',
+    primaryColor = '#FF2900',
+    secondaryColor = '#000000'
+}
+```
+#### Options
+
+- `position`  
+  Controls the UI layout direction.  
+  **Values:** `vertical`, `horizontal`
+
+- `primaryColor`  
+  Main accent color used throughout the UI.
+
+- `secondaryColor`  
+  Background or secondary UI color.
+##### Behavior
+
+- Applied automatically for new characters
+- Can be overridden by saved player preferences
+- Ensures consistent UI styling across the server
+#### Notes
+
+- Colors must be valid HEX values
+- UI reload may be required after changes
+- Restart the resource to apply default changes
+
+## discordRoles
+
+This configuration defines Discord roles that control
+character slot access and character deletion permissions.
+### Configuration
+```lua
+Config.discordRoles = {
+    ['1223528758791766151'] = {
+        slot = true,
+        canDelete = true
+    }
+}
+```
+#### Options
+
+- `slot`  
+  Grants additional character slots to users with this Discord role.
+
+- `canDelete`  
+  Allows users with this Discord role to delete characters.
+
+##### Behavior
+
+- Player Discord roles are checked on join
+- Permissions are applied automatically based on role ID
+- Multiple roles can be configured with different permissions
+#### Notes
+
+- `Config.DiscordSettings` must be enabled
+- Use Discord **Role IDs**, not role names
+- Players must have their Discord linked and visible
+## Musiclist
+
+This option defines the background music list
+used in the multicharacter UI.
+You can add as many tracks as you want.
+### Configuration
+```lua
+Config.Musiclist = {
+    {
+        name  = "Night Drive",
+        file  = "song-1.mp3",
+        cover = "song-1.jpg"
+    }
+}
+```
+###### Adding More Music
+
+You can add multiple tracks by repeating the table entry:
+```lua
+Config.Musiclist = {
+    {
+        name  = "Night Drive",
+        file  = "song-1.mp3",
+        cover = "song-1.jpg"
+    },
+    {
+        name  = "Sunset City",
+        file  = "song-2.mp3",
+        cover = "song-2.jpg"
+    }
+}
+```
+
+##### File Locations
+
+- **Music files:**  
+  `ui/music/mp3/`
+
+- **Cover images:**  
+  `ui/music/img/`
+
+###### Supported Formats
+
+- Audio: `.mp3`, `.ogg`
+- Images: `.jpg`, `.png`
+#### Notes
+
+- File names must match exactly
+- Restart the resource after adding new files
+- Large audio files may increase loading time
