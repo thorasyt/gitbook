@@ -23,7 +23,8 @@ Set the spawn selector location:
 
 For ESX and QBX, trigger the spawn selector in:
 shared/client.lua
-```lua function MultiCharacter:SpawnSelector(spawn, isNew, skin)
+```lua 
+function MultiCharacter:SpawnSelector(spawn, isNew, skin)
     -- Used for ESX and QBX
     -- Trigger your custom spawn selector here
 end
@@ -32,7 +33,8 @@ end
 
 For QBCore, trigger the spawn selector in:
 shared/server.lua
-```lua function Framework.SetQbSpawnTrigger(src, id, isNew)
+```lua 
+function Framework.SetQbSpawnTrigger(src, id, isNew)
     if Config.QbApartments then
         if isNew then
             if Config.SpawnSelector then
