@@ -186,3 +186,54 @@ Config.TebexSlot = true
 - Tebex integration must be properly configured
 - Each purchase ID can only be used once
 - Invalid or reused purchase IDs will be rejected
+
+## DiscordSettings
+
+This option enables Discord role-based configuration.
+It is required for managing character slots and
+character deletion permissions using Discord roles.
+### Configuration
+```lua
+Config.DiscordSettings = true
+```
+
+#### What This Enables
+
+- Role-based character slot limits
+- Role-based permission to delete characters
+- Secure access control using Discord roles
+
+##### Behavior
+
+- Checks player Discord roles on join
+- Applies slot limits based on assigned roles
+- Restricts character deletion based on role permissions
+#### Notes
+
+- Requires Discord identifiers to be enabled on the server
+- Discord bot / role IDs must be correctly configured
+- Additional Discord-related configuration options are defined below
+## QbApartments
+
+This option enables QBCore apartment spawning.
+It is only applicable for QBCore and QBX frameworks
+and works only when the custom Spawn Selector is disabled.
+### Configuration
+```lua
+Config.QbApartments = true
+```
+##### Behavior
+
+- Uses the default QBCore apartment spawn system
+- Applies only to QBCore and QBX frameworks
+- Automatically bypassed when `Config.SpawnSelector` is enabled
+
+#### Conditions
+
+- Framework must be QBCore or QBX
+- `Config.SpawnSelector` must be set to `false`
+#### Notes
+
+- ESX does not support this option
+- If disabled, the script falls back to the standard spawn system
+- Restart the resource after changing this value
