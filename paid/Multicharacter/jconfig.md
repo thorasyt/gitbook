@@ -70,3 +70,46 @@ end
 - ESX & QBX use client-side triggers
 - QBCore uses server-side triggers
 - Automatically falls back to default spawn UI when disabled
+
+## logoutCommand
+
+This command allows players to log out from their current character
+and return to the multicharacter selection screen.
+
+The command can be enabled or disabled from the configuration
+and supports ESX, QBX, and QBCore frameworks.
+
+### Configuration
+```lua
+Config.LogoutCommand = "logout"
+```
+
+#### Notes
+
+- Make sure the multicharacter resource is running
+- Some frameworks may require additional permission checks
+- Can be disabled by setting Config.LogoutCommand to false or nil
+
+## Clothing
+
+This option defines which clothing system is used for character outfits.
+The system supports multiple clothing resources and can be switched easily.
+### Configuration
+```lua 
+Config.Clothing = 'illenium'
+
+```
+
+### Supported Clothing Systems
+
+- illenium
+- qb-clothing
+- esx_skin (skinchanger)
+- you can add more in shared/client at MultiCharacter:ApplySkinPed function
+
+#### Notes
+
+- Make sure the selected clothing resource is started before this script
+- Changing this value does not require code edits
+- Incorrect values may cause clothing menus not to open
+
