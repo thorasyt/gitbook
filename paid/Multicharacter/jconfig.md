@@ -119,7 +119,7 @@ Config.Clothing = 'illenium'
 - Changing this value does not require code edits
 - Incorrect values may cause clothing menus not to open
 
-## autoDataBase
+## AutoDataBase
 
 This option automatically manages required database changes for the script.
 When enabled, the script will check and create missing columns or tables
@@ -141,3 +141,48 @@ Config.autoDataBase = true
 - Recommended to keep this enabled
 - Requires MySQL/OxMySQL to be running
 - Disable only if you prefer manual database management
+
+## databaseTable
+
+This option defines the database table used by the multicharacter system
+to store character-related data.
+### Configuration
+```lua
+Config.databaseTable = 'tg_multicharacter'
+```
+##### Behavior
+
+- Uses the specified table to save multicharacter data
+- Automatically creates or updates the table if `autoDataBase` is enabled
+- Allows easy customization if you want to use a different table name
+#### Notes
+
+- Ensure the table name does not conflict with existing tables
+- Changing this value requires the resource to restart
+- Must match the database structure expected by the script
+
+## TebexSlot
+
+This option enables Tebex-based character slots.
+When enabled, additional slots can be unlocked
+using a valid Tebex purchase ID.
+### Configuration
+```lua
+Config.TebexSlot = true
+```
+#### How It Works
+
+- Players purchase a slot package from your Tebex store
+- Tebex provides a unique purchase ID
+- The purchase ID is validated by the script
+- Once validated, the corresponding character slot is unlocked
+##### Behavior
+
+- Adds extra character slots linked to Tebex purchases
+- Prevents slot usage without a valid purchase ID
+- Works together with base slots and Discord-based slots
+#### Notes
+
+- Tebex integration must be properly configured
+- Each purchase ID can only be used once
+- Invalid or reused purchase IDs will be rejected
