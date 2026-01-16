@@ -245,8 +245,8 @@ will receive when they are created for the first time.
 ### Configuration
 ```lua
 Config.StarterItems = {
-    'water_bottle',
-    'coffee'
+    [1] = {item='water_bottle', count = 10},
+    [2] = {item ='coffee', count = 10}
 }
 ```
 ##### Behavior
@@ -375,3 +375,567 @@ Config.Musiclist = {
 - File names must match exactly
 - Restart the resource after adding new files
 - Large audio files may increase loading time
+
+## newCharacter
+
+This configuration defines validation rules
+for new character creation fields.
+### Configuration
+```lua
+Config.newCharacter = {
+    ['firstname'] = {
+        min = 2,
+        max = 20
+    },
+    ['lastname'] = {
+        min = 2,
+        max = 20
+    },
+    ['height'] = {
+        min = 150,
+        max = 220,
+        default = 185
+    },
+    ['dob'] = {
+        minAge = 18
+    }
+}
+
+```
+
+##### Field Options
+
+- **firstname**
+  - Minimum length: `2`
+  - Maximum length: `20`
+
+- **lastname**
+  - Minimum length: `2`
+  - Maximum length: `20`
+
+- **height**
+  - Minimum: `150`
+  - Maximum: `220`
+  - Default value: `185`
+
+- **dob**
+  - Minimum age required: `18`
+###### Behavior
+
+- Validates input before character creation
+- Prevents invalid or underage characters
+- Applies default values when input is missing
+
+#### Notes
+
+- Field validation runs client-side and server-side
+- Age is calculated from the date of birth
+- Modify limits to match your roleplay rules
+
+## animation
+
+This configuration defines the animations used
+by characters in the multicharacter selection scene.
+Each animation consists of an animation dictionary
+and an animation name.
+
+### Configuration
+```lua
+Config.animation = {
+    ['stand'] = {
+        "anim@heists@heist_corona@single_team",
+        "single_team_loop_boss"
+    },
+    ['sit'] = {
+        "timetable@reunited@ig_10",
+        "base_amanda"
+    },
+    ['standsmoke'] = {
+        "amb@world_human_smoking@female@idle_a",
+        "idle_b"
+    },
+    ['groundsit'] = {
+        "anim@amb@business@bgen@bgen_no_work@",
+        "sit_phone_phoneputdown_idle_nowork"
+    },
+    ['cooking'] = {
+        "amb@prop_human_bbq@male@idle_a",
+        "idle_a"
+    },
+    ['smokesit'] = {
+        "switch@michael@parkbench_smoke_ranger",
+        "parkbench_smoke_ranger_loop"
+    }
+}
+Config.animation = {
+    ['stand'] = {
+        "anim@heists@heist_corona@single_team",
+        "single_team_loop_boss"
+    },
+    ['sit'] = {
+        "timetable@reunited@ig_10",
+        "base_amanda"
+    },
+    ['standsmoke'] = {
+        "amb@world_human_smoking@female@idle_a",
+        "idle_b"
+    },
+    ['groundsit'] = {
+        "anim@amb@business@bgen@bgen_no_work@",
+        "sit_phone_phoneputdown_idle_nowork"
+    },
+    ['cooking'] = {
+        "amb@prop_human_bbq@male@idle_a",
+        "idle_a"
+    },
+    ['smokesit'] = {
+        "switch@michael@parkbench_smoke_ranger",
+        "parkbench_smoke_ranger_loop"
+    }
+}
+```
+#### Notes
+
+- Animation keys are referenced using `animType`
+- You can add custom animations if needed
+- Make sure animation dictionaries exist in GTA
+
+## Locations
+
+This configuration defines spawn locations
+used by the multicharacter selector.
+Each location includes spawn position, camera paths,
+and character preview positions.
+### Configuration
+```lua
+Config.Locations = {
+    ["golf"] = {
+        coords = vec4(-1391.4323, 53.0910, 53.5987, 155.7444),
+
+        camCoords = {
+            vec4(-1405.7288, 73.7373, 52.9786, 267.2395),
+            vec4(-1396.9381, 118.5998, 54.3559, 234.0813),
+            vec4(-1375.0361, 158.9146, 57.2568, 198.3325),
+            vec4(-1335.5956, 139.2919, 57.2705, 118.7829),
+            vec4(-1328.3307, 100.9738, 56.1967, 148.4735),
+            vec4(-1324.9789, 67.0208, 53.5307, 229.9875),
+            vec4(-1324.6182, 59.5551, 53.5425, 91.7738),
+            vec4(-1335.0964, 19.7804, 53.4545, 29.9474),
+            vec4(-1362.2411, 4.6747, 53.1865, 333.9185),
+            vec4(-1377.4480, 9.3734, 53.6545, 193.0871),
+            vec4(-1374.8850, 24.9021, 53.6844, 14.7074),
+            vec4(-1384.2885, 55.3650, 53.8402, 271.6217)
+        },
+
+        Characters = {
+            [1] = {
+                pedCoords = vec4(-1360.3391, 57.3336, 65.5148, 102.3301),
+                camCoords = vec4(-1365.8866, 56.2222, 65.1424, 278.6035),
+                animType = 'stand'
+            },
+            [2] = {
+                pedCoords = vec4(-1314.4242, 122.8508, 56.8950, 329.6780),
+                camCoords = vec4(-1312.9558, 125.1525, 57.3672, 144.0869),
+                animType = 'sit'
+            },
+            [3] = {
+                pedCoords = vec4(-1191.1241, 115.2740, 60.0645, 145.6757),
+                camCoords = vec4(-1193.4943, 111.6696, 59.3142, 324.4308),
+                animType = 'standsmoke'
+            },
+            [4] = {
+                pedCoords = vec4(-1208.3478, 75.6107, 55.2944, 90.5322),
+                camCoords = vec4(-1212.9581, 75.2195, 54.9530, 271.1544),
+                animType = 'groundsit'
+            }
+        }
+    }
+}
+```
+###### Location Structure Explained
+
+- `coords`  
+  Base spawn location for the scene
+
+- `camCoords`  
+  Camera movement points for cinematic transitions
+
+- `Characters`  
+  Character preview positions with animations
+
+#### Notes
+
+- You can add unlimited locations
+- Each character slot can have a different animation
+- Animations must exist in `Config.animation`
+- Restart the resource after modifying locations
+
+## Nationalities
+
+This configuration defines the list of nationalities
+available when creating a new character.
+
+### Configuration
+```lua
+Config.Nationalities = {
+     "Afghanistan",
+    "Åland Islands",
+    "Albania",
+    "American Samoa",
+    "Algeria",
+    "Andorra",
+    "Antarctica",
+    "Angola",
+    "Antigua and Barbuda",
+    "Anguilla",
+    "Armenia",
+    "Argentina",
+    "Aruba",
+    "Azerbaijan",
+    "Australia",
+    "Austria",
+    "Bahamas",
+    "Bangladesh",
+    "Barbados",
+    "Bahrain",
+    "Belarus",
+    "Belgium",
+    "Benin",
+    "Belize",
+    "Bermuda",
+    "Bonaire, Sint Eustatius and Saba",
+    "Bosnia and Herzegovina",
+    "Bolivia (Plurinational State of)",
+    "Bouvet Island",
+    "Bhutan",
+    "Botswana",
+    "Brazil",
+    "British Indian Ocean Territory",
+    "United States Minor Outlying Islands",
+    "Virgin Islands (British)",
+    "Brunei Darussalam",
+    "Virgin Islands (U.S.)",
+    "Bulgaria",
+    "Burkina Faso",
+    "Cameroon",
+    "Cambodia",
+    "Canada",
+    "Cabo Verde",
+    "Cayman Islands",
+    "Central African Republic",
+    "Burundi",
+    "China",
+    "Chile",
+    "Christmas Island",
+    "Cocos (Keeling) Islands",
+    "Comoros",
+    "Colombia",
+    "Congo (Democratic Republic of the)",
+    "Congo",
+    "Costa Rica",
+    "Cook Islands",
+    "Cuba",
+    "Croatia",
+    "Curaçao",
+    "Chad",
+    "Czech Republic",
+    "Denmark",
+    "Djibouti",
+    "Dominican Republic",
+    "Dominica",
+    "Cyprus",
+    "Ecuador",
+    "El Salvador",
+    "Egypt",
+    "Equatorial Guinea",
+    "Estonia",
+    "Ethiopia",
+    "Eritrea",
+    "Falkland Islands (Malvinas)",
+    "Faroe Islands",
+    "Fiji",
+    "Finland",
+    "France",
+    "French Guiana",
+    "French Polynesia",
+    "French Southern Territories",
+    "Gabon",
+    "Gambia",
+    "Georgia",
+    "Germany",
+    "Gibraltar",
+    "Greece",
+    "Greenland",
+    "Grenada",
+    "Ghana",
+    "Guatemala",
+    "Guam",
+    "Guernsey",
+    "Guinea-Bissau",
+    "Guadeloupe",
+    "Guinea",
+    "Guyana",
+    "Haiti",
+    "Vatican City",
+    "Heard Island and McDonald Islands",
+    "Honduras",
+    "Hungary",
+    "Hong Kong",
+    "Iceland",
+    "Indonesia",
+    "Ivory Coast",
+    "Iran (Islamic Republic of)",
+    "Iraq",
+    "Ireland",
+    "Isle of Man",
+    "Italy",
+    "India",
+    "Israel",
+    "Jersey",
+    "Jamaica",
+    "Jordan",
+    "Kazakhstan",
+    "Japan",
+    "Kenya",
+    "Kiribati",
+    "Lao People's Democratic Republic",
+    "Latvia",
+    "Kyrgyzstan",
+    "Lebanon",
+    "Lesotho",
+    "Kuwait",
+    "Liberia",
+    "Liechtenstein",
+    "Libya",
+    "Lithuania",
+    "Luxembourg",
+    "North Macedonia",
+    "Malawi",
+    "Madagascar",
+    "Malaysia",
+    "Macao",
+    "Maldives",
+    "Mali",
+    "Malta",
+    "Marshall Islands",
+    "Mauritius",
+    "Martinique",
+    "Mauritania",
+    "Mayotte",
+    "Micronesia (Federated States of)",
+    "Monaco",
+    "Moldova (Republic of)",
+    "Mexico",
+    "Mongolia",
+    "Montenegro",
+    "Mozambique",
+    "Montserrat",
+    "Morocco",
+    "Myanmar",
+    "Namibia",
+    "Nauru",
+    "Netherlands",
+    "New Zealand",
+    "New Caledonia",
+    "Nepal",
+    "Nicaragua",
+    "Nigeria",
+    "Niger",
+    "Korea (Democratic People's Republic of)",
+    "Norfolk Island",
+    "Northern Mariana Islands",
+    "Niue",
+    "Norway",
+    "Pakistan",
+    "Palau",
+    "Palestine, State of",
+    "Papua New Guinea",
+    "Oman",
+    "Panama",
+    "Paraguay",
+    "Philippines",
+    "Peru",
+    "Poland",
+    "Portugal",
+    "Puerto Rico",
+    "Pitcairn",
+    "Réunion",
+    "Republic of Kosovo",
+    "Qatar",
+    "Romania",
+    "Rwanda",
+    "Russian Federation",
+    "Saint Helena, Ascension and Tristan da Cunha",
+    "Saint Barthélemy",
+    "Saint Lucia",
+    "Saint Pierre and Miquelon",
+    "Saint Martin (French part)",
+    "Saint Vincent and the Grenadines",
+    "Samoa",
+    "Saint Kitts and Nevis",
+    "Saudi Arabia",
+    "San Marino",
+    "Sao Tome and Principe",
+    "Senegal",
+    "Serbia",
+    "Seychelles",
+    "Sierra Leone",
+    "Sint Maarten (Dutch part)",
+    "Slovakia",
+    "Slovenia",
+    "Singapore",
+    "South Africa",
+    "South Georgia and the South Sandwich Islands",
+    "Solomon Islands",
+    "Korea (Republic of)",
+    "Sri Lanka",
+    "Spain",
+    "Somalia",
+    "South Sudan",
+    "Svalbard and Jan Mayen",
+    "Suriname",
+    "Swaziland",
+    "Switzerland",
+    "Syrian Arab Republic",
+    "Taiwan",
+    "Sudan",
+    "Sweden",
+    "Thailand",
+    "Timor-Leste",
+    "Tanzania, United Republic of",
+    "Togo",
+    "Tokelau",
+    "Tajikistan",
+    "Trinidad and Tobago",
+    "Turkey",
+    "Tunisia",
+    "Turkmenistan",
+    "Tonga",
+    "Turks and Caicos Islands",
+    "Ukraine",
+    "Tuvalu",
+    "United Arab Emirates",
+    "United Kingdom of Great Britain and Northern Ireland",
+    "Uganda",
+    "United States of America",
+    "Uruguay",
+    "Uzbekistan",
+    "Vanuatu",
+    "Venezuela (Bolivarian Republic of)",
+    "Wallis and Futuna",
+    "Vietnam",
+    "Western Sahara",
+    "Zambia",
+    "Zimbabwe",
+    "Yemen"
+}
+```
+##### Behavior
+
+- Displays a selectable nationality list during character creation
+- Stores the selected nationality with character data
+- Can be freely customized or extended
+
+#### Notes
+
+- Order of entries affects display order
+- Supports unlimited nationalities
+- Restart the resource after modifying the list
+
+## DefaultSkin
+
+This configuration defines the default appearance
+applied to new characters when they are created.
+Separate presets are supported for male and female characters.
+
+### Configuration
+```lua
+Config.DefaultSkin = {
+    ["m"] = {
+        -- Male default skin preset
+        mom = 43,
+        dad = 29,
+        grandparents = 0,
+        face_md_weight = 61,
+        skin_md_weight = 27,
+        face_g_weight = 0,
+        nose_1 = -5,
+        nose_2 = 6,
+        nose_3 = 5,
+        nose_4 = 8,
+        nose_5 = 10,
+        nose_6 = 0,
+        cheeks_1 = 2,
+        cheeks_2 = -10,
+        cheeks_3 = 6,
+        lip_thickness = -2,
+        jaw_1 = 0,
+        jaw_2 = 0,
+        chin_1 = 0,
+        chin_2 = 0,
+        chin_13 = 0,
+        chin_4 = 0,
+        neck_thickness = 0,
+        hair_1 = 76,
+        hair_2 = 0,
+        hair_color_1 = 61,
+        hair_color_2 = 29,
+        tshirt_1 = 4,
+        tshirt_2 = 2,
+        torso_1 = 23,
+        torso_2 = 2,
+        arms = 1,
+        arms_2 = 0,
+        pants_1 = 28,
+        pants_2 = 3,
+        shoes_1 = 70,
+        shoes_2 = 2,
+        beard_1 = 11,
+        beard_2 = 10,
+        beard_3 = 0,
+        beard_4 = 0
+    },
+
+    ["f"] = {
+        -- Female default skin preset
+        mom = 28,
+        dad = 6,
+        grandparents = 0,
+        face_md_weight = 63,
+        skin_md_weight = 60,
+        face_g_weight = 0,
+        nose_1 = -10,
+        nose_2 = 4,
+        nose_3 = 5,
+        chin_1 = -10,
+        chin_2 = 10,
+        neck_thickness = -5,
+        hair_1 = 43,
+        hair_2 = 0,
+        hair_color_1 = 29,
+        hair_color_2 = 35,
+        tshirt_1 = 111,
+        tshirt_2 = 5,
+        torso_1 = 25,
+        torso_2 = 2,
+        pants_1 = 12,
+        pants_2 = 2,
+        shoes_1 = 20,
+        shoes_2 = 10,
+        eye_color = 8,
+        moles_1 = 12,
+        moles_2 = 8
+    }
+}
+```
+##### Behavior
+
+- Applied automatically to newly created characters
+- Used as a base before clothing or skin customization
+- Works with supported clothing systems
+
+### Notes
+
+- Presets must match your skin/clothing resource
+- Values are fully customizable
+- Restart the resource after making changes
